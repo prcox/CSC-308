@@ -6,11 +6,16 @@ import axios from 'axios';
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 
-   function removeOneCharacter (index) {
+   async function removeOneCharacter (index) {
+    const url = 'http://localhost:5000/users/'+characters[index].id;
+    const response = await axios.delete(url);
+    if (response.status === 204)
+    {
       const updated = characters.filter((character, i) => {
          return i !== index
       });
       setCharacters(updated);
+    }
    }
 
    async function fetchAll(){
