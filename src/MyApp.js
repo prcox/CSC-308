@@ -7,7 +7,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
    async function removeOneCharacter (index) {
-    const url = 'http://localhost:5000/users/'+characters[index].id;
+    const url = 'http://localhost:5000/users/'+characters[index]._id;
     const response = await axios.delete(url);
     if (response.status === 204)
     {
@@ -33,7 +33,7 @@ function MyApp() {
  function updateList(person) { 
   makePostCall(person).then( result => {
   if (result.status === 201)
-     setCharacters([...characters, result.data.data] );
+     setCharacters([...characters, result.data] );
   });
 }
 
